@@ -1,4 +1,5 @@
-//tagName是i，遞增迴圈
+//遍歷動態參數
+//tagName是i
 let userEmail = user?.email; // 假設這是使用者的電子郵件地址
 let upperLimit = 10; // 自行設定上限值
 
@@ -26,7 +27,7 @@ for (let i = 0; i < tagNames.length; i++) {
     console.log(imageUrl); // 輸出 imageUrl，以供測試
 }
 
-
+//遍歷靜態參數
 //也可以是用foreach===================================================
 const imgTagElements = document.querySelectorAll('.img_tag');
 
