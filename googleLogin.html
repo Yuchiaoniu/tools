@@ -8,9 +8,11 @@
 </head>
 
 <body>
-    <div style="color:black;" id="displayName"></div>
-    <button type="button" class="google-btn">Connect with <span>Google</span></button>
-    <button type="button" id="logout-button">sign out <span>Google</span></button>
+    <div>
+        <span style="color: black;" id="displayName"></span>
+        <button type="button" class="google-btn">Connect with <span>Google</span></button>
+        <button type="button" id="logout-button" style="display: none;">sign out <span>Google</span></button>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js"></script>
@@ -98,6 +100,8 @@
 
             const auth = getAuth();
             signOut(auth).then(() => {
+                sessionStorage.removeItem('result');
+                sessionStorage.removeItem('user');
                 console.log('User signed out.');
                 location.reload();
             }).catch((error) => {
@@ -105,6 +109,14 @@
             });
 
         });
+
+
+
+        // 檢查 user?.displayName 是否存在
+        if (user?.displayName) {
+            document.getElementById('displayName').textContent = 'Hello ' + user.displayName;
+            document.getElementById('logout-button').style.display = 'inline-flex';
+        }
 
     </script>
 </body>
