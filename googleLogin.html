@@ -98,8 +98,6 @@
 
             const auth = getAuth();
             signOut(auth).then(() => {
-                sessionStorage.removeItem('result');
-                sessionStorage.removeItem('user');
                 console.log('User signed out.');
                 location.reload();
             }).catch((error) => {
