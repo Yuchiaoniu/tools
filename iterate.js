@@ -15,10 +15,10 @@ for (let i = 0; i < upperLimit; i++) {
 
 //tagName是陣列
 let userEmail = user?.email; // 假設這是使用者的電子郵件地址
-let tagNames = ["0", "1", "2", "3", "4", "5"]; // 假設這是 tagNames 陣列
+let tagNameAttray = ["0", "1", "2", "3", "4", "5"]; // 假設這是 tagNameAttray 陣列
 
-for (let i = 0; i < tagNames.length; i++) {
-    let tagName = tagNames[i];
+for (let i = 0; i < tagNameAttray.length; i++) {
+    let tagName = tagNameAttray[i];
     let imageUrl = `./upload/${userEmail}${tagName}.jpg`;
 
     // 在這裡使用 imageUrl，例如更新 img 標籤的 src 屬性
