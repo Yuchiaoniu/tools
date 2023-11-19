@@ -29,12 +29,21 @@ echo '
             xhr.send("editedText=" + encodeURIComponent(editedText));
             alert("update!");
         });
+        // application/json： 用於指定傳送的內容是 JSON 格式的資料。
+        // application/x-www-form-urlencoded： 用於指定傳送的內容是經過 URL 編碼的表單數據。
+        // multipart/form-data： 用於指定傳送的內容是一個包含多個部分（例如，用於上傳文件的表單）。
+        // text/html： 用於指定傳送的內容是 HTML 格式的文本。
+        // text/plain： 用於指定傳送的內容是純文本格式。
+        //圖片最好使用第三種，因為第二種會將資料以url的方式重新編碼，這會使得圖片這種二進制的資料被改寫或著字元缺失
+        //text/html 和 text/plain有著重大的區別是，前者會被解釋為html，包含顏色樣式等等，而第二種則被視為完全文本
 
         // 設定可編輯狀態
         function makeEditable(element) {
             element.contentEditable = true;
             element.focus();
         }
+
+        
 
 
         //抓取檔案內容
@@ -65,14 +74,17 @@ echo '
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $useremail = $_POST["userEmail"];
+    $tagId = $_POST["tagId"];
     $editedText = $_POST["editedText"];
 
-    $fileName = "text.txt";
-    $filePath = "upload/" . $fileName; // 請確保 "upload" 資料夾存在並具有適當的權限
+    $fileName = $useremail.$tagId;
+    $filePath = "./" . $fileName . ".txt"; // 請確保 "upload" 資料夾存在並具有適當的權限
 
     file_put_contents($filePath, $editedText);
 
     echo "Text saved successfully.";
+    
 }
-
+header("Location: index.html");
 ?>
